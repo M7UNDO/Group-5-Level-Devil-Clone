@@ -32,7 +32,5 @@ public class PlayerManager : MonoBehaviour
 
         Transform playerParent = player.transform;
         playerParent.position = startingPoints[players.Count - 1].position;
-
-
     }
 }

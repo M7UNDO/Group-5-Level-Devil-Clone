@@ -29,13 +29,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float jumpPower = 5f;
     private bool canJump;
+
+    private float cayoteTimeCount;
+    [SerializeField]
+    private float cayoteTime = 0.2f;
     [SerializeField]
     private Transform groundCheck;
     [SerializeField]
     private LayerMask groundLayer;
-    [SerializeField]
-    private float cayoteTimeCount;
-    private float cayoteTime = 0.2f;
+ 
+    
 
     
 
@@ -55,7 +58,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (IsGrounded())
+        {
+            cayoteTimeCount = cayoteTime;
+        }
+        else
+        {
+            cayoteTimeCount -= Time.deltaTime;
+        }
+
+        if (!IsGrounded())
+        {
+            print("cayote time started");
+        }
         
+
         Flip();
         
     }
@@ -67,11 +84,17 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(input.x * moveSpeed, rb.velocity.y);
 
 
-        if (IsGrounded() && canJump)
+        if (cayoteTimeCount > 0f && canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             canJump = false;
         }
+
+        if(rb.velocity.y  > 0.5f)
+        {
+            cayoteTimeCount = 0f;
+        }
+
 
         print(IsGrounded());
 
@@ -96,21 +119,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (cayoteTimeCount > 0f)
         {
             canJump = true;
         }
-        
+
     }
 
-
-    //Just used a trigger for the ground check instead of a Raycast
-   /* private void OnTriggerEnter2D(Collider2D coli)
-    {
-        if(coli.gameObject.CompareTag("Platform"))
-        {
-            canJump = true;
-        }
-    }
-   */
 }
