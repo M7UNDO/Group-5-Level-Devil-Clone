@@ -19,17 +19,23 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float moveSpeed = 5f;
+    public bool isFacingRight;
+    private float horizonal;
 
 
     [Header("Jump")]
     [Space(5)]
 
     [SerializeField]
-    private float jumpForce = 5f;
-    private bool isGrounded;
+    private float jumpPower = 5f;
     private bool canJump;
-    private bool jumpQueued;
-    public LayerMask jumpMask;
+    [SerializeField]
+    private Transform groundCheck;
+    [SerializeField]
+    private LayerMask groundLayer;
+    [SerializeField]
+    private float cayoteTimeCount;
+    private float cayoteTime = 0.2f;
 
     
 
@@ -50,39 +56,61 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        print(isGrounded);
-      
+        Flip();
+        
     }
 
     private void FixedUpdate()
     {
         Vector2 input = move.ReadValue<Vector2>();
+        horizonal = input.x;
         rb.velocity = new Vector2(input.x * moveSpeed, rb.velocity.y);
 
 
-        if (jumpQueued && canJump)
+        if (IsGrounded() && canJump)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             canJump = false;
-            jumpQueued = false;
         }
 
+        print(IsGrounded());
+
+    }
+
+    private void Flip()
+    {
+        if(isFacingRight && horizonal < 0f || !isFacingRight && horizonal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
     
 
     private void Jump(InputAction.CallbackContext context)
     {
-        jumpQueued = true;
+        if (IsGrounded())
+        {
+            canJump = true;
+        }
+        
     }
 
 
     //Just used a trigger for the ground check instead of a Raycast
-    private void OnTriggerEnter2D(Collider2D coli)
+   /* private void OnTriggerEnter2D(Collider2D coli)
     {
         if(coli.gameObject.CompareTag("Platform"))
         {
             canJump = true;
         }
     }
-
+   */
 }
