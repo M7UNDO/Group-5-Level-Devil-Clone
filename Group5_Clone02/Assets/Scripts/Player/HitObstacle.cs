@@ -13,6 +13,9 @@ public class HitObstacle : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 startPosition;
 
+    [Header("Audio")]
+    public AudioSource explodeSfx;
+
     private void Start()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -25,12 +28,14 @@ public class HitObstacle : MonoBehaviour
     {
         if (coli.gameObject.CompareTag("Spikes"))
         {
+
             StartCoroutine(HandleDeath());
         }
     }
 
     private IEnumerator HandleDeath()
     {
+        explodeSfx.Play();
         ParticleSystem effect = Instantiate(particleEffectPrefab, player.transform.position, Quaternion.identity);
         effect.Play();
 
