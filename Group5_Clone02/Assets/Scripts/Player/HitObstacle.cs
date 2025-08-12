@@ -15,6 +15,7 @@ public class HitObstacle : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource explodeSfx;
+    public AudioSource respawnSfx;
 
     private void Start()
     {
@@ -53,6 +54,7 @@ public class HitObstacle : MonoBehaviour
         yield return new WaitForSeconds(respawnDelay);
 
         // Respawn position
+        respawnSfx.Play();
         Vector3 spawnPos = respawnPoint != null ? respawnPoint.position : startPosition;
         player.transform.position = spawnPos;
 
