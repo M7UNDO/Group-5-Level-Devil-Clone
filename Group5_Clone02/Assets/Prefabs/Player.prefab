@@ -220,7 +220,7 @@ MonoBehaviour:
   moveSpeed: 7
   isFacingRight: 0
   jumpPower: 5
-  cayoteTime: 1
+  cayoteTime: 0.2
   groundCheck: {fileID: 5455718064136059250}
   groundLayer:
     serializedVersion: 2
