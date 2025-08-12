@@ -5,6 +5,7 @@ public class HitObstacle : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private ParticleSystem particleEffectPrefab;
+    [SerializeField] private ParticleSystem respawnEffect;
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float respawnDelay = 2f;
 
@@ -48,6 +49,7 @@ public class HitObstacle : MonoBehaviour
 
 
         rb.velocity = Vector2.zero;
+        
         RigidbodyConstraints2D originalConstraints = rb.constraints;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
@@ -55,6 +57,7 @@ public class HitObstacle : MonoBehaviour
 
         // Respawn position
         respawnSfx.Play();
+        respawnEffect.Play();
         Vector3 spawnPos = respawnPoint != null ? respawnPoint.position : startPosition;
         player.transform.position = spawnPos;
 
