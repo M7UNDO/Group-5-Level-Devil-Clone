@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class TrapTrigger : MonoBehaviour
 {
-    public GameObject trap; // Link the trap prefab here
-    public float delay = 0f; // Time before trap activates
+    public GameObject trap; 
+    public string playerTag = "Player";
 
-    private bool activated = false;
+    private bool hasTriggered = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!activated && other.CompareTag("Player"))
+        if (!hasTriggered && collision.CompareTag(playerTag))
         {
-            activated = true;
-            Invoke(nameof(ActivateTrap), delay);
-        }
-    }
+            hasTriggered = true;
 
-    void ActivateTrap()
-    {
-        if (trap != null && trap.TryGetComponent<ITrap>(out var trapComponent))
-        {
-            trapComponent.Activate();
+            // If trap has an Animator
+            Animator anim = trap.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetTrigger("Activate");
+            }
+
+            // If trap has a movement script
+            ITrapAction action = trap.GetComponent<ITrapAction>();
+            if (action != null)
+            {
+                action.ActivateTrap();
+            }
         }
     }
 }

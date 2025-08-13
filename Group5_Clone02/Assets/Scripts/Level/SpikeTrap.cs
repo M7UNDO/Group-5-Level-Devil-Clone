@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
- public class SpikeTrap : MonoBehaviour, ITrap
- {
-       public float speed = 5f;
-       public float riseHeight = 2f;
-       private Vector3 startPos;
-       private bool rising = false;
-   
-       void Start()
-       {
-           startPos = transform.position;
-       }
-   
-       public void Activate()
-       {
-           rising = true;
-       }
-   
-       void Update()
-       {
-           if (rising)
-           {
-               transform.position = Vector3.MoveTowards(transform.position, startPos + Vector3.up * riseHeight, speed * Time.deltaTime);
-           }
+public class SpikeTrap : MonoBehaviour, ITrapAction
+{
+    public float popUpSpeed = 5f;
+    public Vector2 popUpOffset = new Vector2(0, 1f);
+
+    private Vector2 startPos;
+    private Vector2 targetPos;
+    private bool activated = false;
+
+    private void Start()
+    {
+        startPos = transform.position;
+        targetPos = startPos + popUpOffset;
+    }
+
+    public void ActivateTrap()
+    {
+        activated = true;
+    }
+
+    private void Update()
+    {
+        if (activated)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, popUpSpeed * Time.deltaTime);
+        }
     }
 }
