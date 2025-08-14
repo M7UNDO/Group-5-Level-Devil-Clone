@@ -9746,7 +9746,7 @@ Transform:
   m_GameObject: {fileID: 4269652270078046578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.211, y: 0.333, z: 0}
+  m_LocalPosition: {x: 0.211, y: 0.333, z: 0}
   m_LocalScale: {x: 0.7112, y: 0.1114, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9847,12 +9847,12 @@ GameObject:
   - component: {fileID: 3269651776767537216}
   - component: {fileID: 4312625527521662547}
   - component: {fileID: 5002995714130507973}
+  - component: {fileID: 2298996390283397411}
   - component: {fileID: 6412013395188157984}
   - component: {fileID: 6140918609121410114}
-  - component: {fileID: 2298996390283397411}
   - component: {fileID: 1368260684441040408}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9871,8 +9871,8 @@ Transform:
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5455718064136059250}
   - {fileID: 1811109924711622927}
+  - {fileID: 5455718064136059250}
   - {fileID: 2181079843725825787}
   - {fileID: 5942371001375323944}
   m_Father: {fileID: 0}
@@ -9941,9 +9941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e797946de4857e46bd89a04bcaa8161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  isFacingRight: 0
-  jumpPower: 5
+  moveSpeed: 9
+  isFacingRight: 1
+  jumpPower: 7
   cayoteTime: 0.2
   groundCheck: {fileID: 5455718064136059250}
   groundLayer:
@@ -9964,8 +9964,8 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 2
+  m_Material: {fileID: 6200000, guid: 15357ec129bd4bd4ea93ff8abf828118, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9976,6 +9976,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2298996390283397411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090306112019536768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b095d777c24631a4390e93549a0b1f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6090306112019536768}
+  particleEffectPrefab: {fileID: 741816338185877869}
+  respawnEffect: {fileID: 5957193868609366319}
+  respawnPoint: {fileID: 0}
+  respawnDelay: 2
+  allPlayerRenderers:
+  - {fileID: 3269651776767537216}
+  - {fileID: 4770258448463433565}
+  rb: {fileID: 0}
+  explodeSfx: {fileID: 8350488220792258186}
+  respawnSfx: {fileID: 1368260684441040408}
 --- !u!61 &6412013395188157984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10051,28 +10074,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2298996390283397411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6090306112019536768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b095d777c24631a4390e93549a0b1f11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 6090306112019536768}
-  particleEffectPrefab: {fileID: 741816338185877869}
-  respawnEffect: {fileID: 5957193868609366319}
-  respawnPoint: {fileID: 0}
-  respawnDelay: 2
-  allPlayerRenderers:
-  - {fileID: 3269651776767537216}
-  - {fileID: 4770258448463433565}
-  explodeSfx: {fileID: 8350488220792258186}
-  respawnSfx: {fileID: 1368260684441040408}
 --- !u!82 &1368260684441040408
 AudioSource:
   m_ObjectHideFlags: 0

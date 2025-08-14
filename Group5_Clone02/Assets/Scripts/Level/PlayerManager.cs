@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private List<Transform> startingPoints;
 
     private PlayerInputManager playerInputManager;
+    public GameObject newPrefab;
 
     private void Awake()
     {
@@ -32,5 +33,10 @@ public class PlayerManager : MonoBehaviour
 
         Transform playerParent = player.transform;
         playerParent.position = startingPoints[players.Count - 1].position;
+
+        if(newPrefab != null && players.Count == 1)
+        {
+            PlayerInputManager.instance.playerPrefab = newPrefab;
+        }
     }
 }

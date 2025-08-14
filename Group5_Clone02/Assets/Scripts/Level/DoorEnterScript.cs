@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoorEnterScript : MonoBehaviour
+{
+    [SerializeField] private Animator doorAnimator;
+    [SerializeField] private float fadeDuration = 2f;
+    private Rigidbody2D rb;
+    private void OnTriggerEnter2D(Collider2D coli)
+    {
+        if (coli.CompareTag("Player"))
+        {
+            coli.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            coli.gameObject.transform.position = transform.position;
+            rb = coli.gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+            StartCoroutine(PlayerEnterDoor(coli.gameObject));
+
+        }
+    }
+
+
+    private IEnumerator PlayerEnterDoor(GameObject player)
+    {
+        
+        
+        SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+        SpriteRenderer srEyes = player.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        Color startColor = sr.color;
+        Color startEyesColor = sr.color;
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            sr.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            srEyes.color = new Color(startEyesColor.r, startEyesColor.g, startEyesColor.b, alpha);
+            yield return null;
+        }
+
+        doorAnimator.SetTrigger("Close");
+    }
+}
+
+    
+
+
+
