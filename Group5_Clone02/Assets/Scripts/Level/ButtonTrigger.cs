@@ -21,6 +21,7 @@ public class ButtonTrigger : MonoBehaviour
     {
         startPos = obstacle.transform.position;
         originalButtonState = transform.position;
+        obstacle.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D coli)
@@ -46,7 +47,7 @@ public class ButtonTrigger : MonoBehaviour
     private IEnumerator MoveObstacle()
     {
         moving = true;
-
+        obstacle.SetActive(true);
 
         while ((Vector2)obstacle.transform.position != endPos)
         {
@@ -77,7 +78,7 @@ public class ButtonTrigger : MonoBehaviour
 
         
 
-
+        obstacle.SetActive(false);
     }
 
     private IEnumerator ButtonPress()
