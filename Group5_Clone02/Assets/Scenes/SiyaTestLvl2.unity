@@ -1394,6 +1394,7 @@ GameObject:
   - component: {fileID: 953851541}
   - component: {fileID: 953851540}
   - component: {fileID: 953851542}
+  - component: {fileID: 953851543}
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
@@ -1416,7 +1417,7 @@ MonoBehaviour:
   m_NotificationBehavior: 3
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1469,7 +1470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953851538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ecfe5ddda1f834c901ce24af3e06ce, type: 3}
   m_Name: 
@@ -1478,6 +1479,24 @@ MonoBehaviour:
   - {fileID: 886680474}
   - {fileID: 1632008782}
   newPrefab: {fileID: 6090306112019536768, guid: 4a966ad0937d1ab4f89e4dc00eb5a51b, type: 3}
+--- !u!114 &953851543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953851538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b21052bc8dde3647af1ba0f8f9a4b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPoint1: {fileID: 886680474}
+  SpawnPoint2: {fileID: 1632008782}
+  Player1: {fileID: 6090306112019536768, guid: b6fbb1a6755ca6047af82aa8898377ae, type: 3}
+  Player2: {fileID: 6090306112019536768, guid: 4a966ad0937d1ab4f89e4dc00eb5a51b, type: 3}
+  player1: {fileID: 6140918609121410114, guid: b6fbb1a6755ca6047af82aa8898377ae, type: 3}
+  player2: {fileID: 6140918609121410114, guid: 4a966ad0937d1ab4f89e4dc00eb5a51b, type: 3}
 --- !u!1 &994849047 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5381853421762093162, guid: ad13eaf7a4d2b12418e0b211eca78fcf, type: 3}
@@ -4483,6 +4502,10 @@ PrefabInstance:
     - target: {fileID: 1167876552864336561, guid: 67138f90669ec3e49be5ce8a2cb217ac, type: 3}
       propertyPath: m_Name
       value: JoinPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167876552864336561, guid: 67138f90669ec3e49be5ce8a2cb217ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7254839456644129008, guid: 67138f90669ec3e49be5ce8a2cb217ac, type: 3}
       propertyPath: m_Pivot.x
