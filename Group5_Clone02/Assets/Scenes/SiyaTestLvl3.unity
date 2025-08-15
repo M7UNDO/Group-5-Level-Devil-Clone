@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc253def01831b41a9c7669e20d7e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformTrigger: {fileID: 1472252716}
+  platformTrigger: {fileID: 518571627}
   platform: {fileID: 1609026928}
 --- !u!61 &547235975
 BoxCollider2D:
@@ -846,7 +846,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.259652}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -857,7 +857,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.480696}
   m_EdgeRadius: 0
 --- !u!212 &547235976
 SpriteRenderer:
@@ -1036,10 +1036,10 @@ MonoBehaviour:
   rockPrefabs:
   - {fileID: 4269150161738035102, guid: 5c588758feaeb664c80bbf2fc7b06285, type: 3}
   rockFallSpeed: 5
-  minX: 2
+  minX: 3
   maxX: 17
   spawnY: 10.06
-  spawnRate: 0.15
+  spawnRate: 0.18
   secsToDestroy: 2
 --- !u!4 &609119319
 Transform:
@@ -1563,7 +1563,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.259652}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1574,7 +1574,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.48069602}
   m_EdgeRadius: 0
 --- !u!212 &1124224090
 SpriteRenderer:
@@ -3067,9 +3067,9 @@ MonoBehaviour:
   - {fileID: 4269150161738035102, guid: 5c588758feaeb664c80bbf2fc7b06285, type: 3}
   rockFallSpeed: 5
   minX: -17
-  maxX: -2
+  maxX: -3
   spawnY: 10.06
-  spawnRate: 0.15
+  spawnRate: 0.18
   secsToDestroy: 2
 --- !u!1 &1729321588
 GameObject:
@@ -3617,7 +3617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8098077307678450186, guid: 80b10f7012f3b984eb702c5f4e8f3654, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
