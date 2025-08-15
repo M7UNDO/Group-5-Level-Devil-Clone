@@ -36,7 +36,7 @@ public class HitObstacle : MonoBehaviour
         }
     }
 
-    private IEnumerator HandleDeath()
+    public IEnumerator HandleDeath()
     {
         explodeSfx.Play();
         player.GetComponent<BoxCollider2D>().enabled = false;

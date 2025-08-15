@@ -5,32 +5,56 @@ using UnityEngine;
 public class ButtonTrigger : MonoBehaviour
 {
     public GameObject obstacle;
+
+    [Header("Button Moves Obstacle")]
     private Vector2 startPos;
     [SerializeField] private Vector2 endPos;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float pressSpeed = 3f;
     [SerializeField] private float timeToDeactivate = 2f;
+    
     public bool isTemporaryObstacle;
+
+    
 
     private bool moving = false;
     [SerializeField] private Vector2 pressedButtonState;
     private Vector2 originalButtonState;
+
+    [Header("Button Deactives/Activates Obstacle")]
+    [SerializeField] private float timeActivateObstacle = 2f;
+    public bool isDoorDeactivator = false;
 
     public AudioSource buttonPushSFX;
     private void Start()
     {
         startPos = obstacle.transform.position;
         originalButtonState = transform.position;
-        obstacle.SetActive(false);
+
+        if(!isDoorDeactivator)
+        {
+            obstacle.SetActive(false);
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D coli)
     {
         if (coli.gameObject.CompareTag("Player") && !moving)
         {
-            StartCoroutine(ButtonPress());
-            buttonPushSFX.Play();
-            StartCoroutine(MoveObstacle());
+            if (isDoorDeactivator)
+            {
+                StartCoroutine(ButtonPress());
+                buttonPushSFX.Play();
+                StartCoroutine(DeactivateObstacle());
+            }
+            else
+            {
+                StartCoroutine(ButtonPress());
+                buttonPushSFX.Play();
+                StartCoroutine(MoveObstacle());
+            }
+                
             
         }
     }
@@ -79,6 +103,13 @@ public class ButtonTrigger : MonoBehaviour
         
 
         obstacle.SetActive(false);
+    }
+
+    private IEnumerator DeactivateObstacle()
+    {
+        obstacle.SetActive(false );
+        yield return new WaitForSeconds(timeActivateObstacle);
+        obstacle.SetActive(true);
     }
 
     private IEnumerator ButtonPress()

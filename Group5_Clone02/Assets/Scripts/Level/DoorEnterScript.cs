@@ -13,8 +13,10 @@ public class DoorEnterScript : MonoBehaviour
         {
             coli.gameObject.GetComponent<PlayerMovement>().enabled = false;
             coli.gameObject.transform.position = transform.position;
+            coli.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             rb = coli.gameObject.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
+            rb.gravityScale = 0f;
             StartCoroutine(PlayerEnterDoor(coli.gameObject));
 
         }

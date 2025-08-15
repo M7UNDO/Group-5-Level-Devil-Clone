@@ -26,8 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     [Space(5)]
 
-    [SerializeField]
-    private float jumpPower = 5f;
+    public float jumpPower = 5f;
     private bool canJump;
 
     private float cayoteTimeCount;
