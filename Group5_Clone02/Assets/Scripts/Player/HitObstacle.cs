@@ -11,7 +11,8 @@ public class HitObstacle : MonoBehaviour
 
     [SerializeField] private SpriteRenderer[] allPlayerRenderers;
     private PlayerMovement playerMovement;
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
+    private RigidbodyConstraints2D rbConstraints;
     private Vector3 startPosition;
 
     [Header("Audio")]
@@ -22,13 +23,13 @@ public class HitObstacle : MonoBehaviour
     {
         playerMovement = player.GetComponent<PlayerMovement>();
         rb = player.GetComponent<Rigidbody2D>();
-
+        rbConstraints = rb.constraints;
         startPosition = player.transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D coli)
     {
-        if (coli.gameObject.CompareTag("Spikes"))
+        if (coli.gameObject.CompareTag("Spikes") || coli.gameObject.CompareTag("Saw"))
         {
 
             StartCoroutine(HandleDeath());
@@ -38,6 +39,7 @@ public class HitObstacle : MonoBehaviour
     private IEnumerator HandleDeath()
     {
         explodeSfx.Play();
+        player.GetComponent<BoxCollider2D>().enabled = false;
         ParticleSystem effect = Instantiate(particleEffectPrefab, player.transform.position, Quaternion.identity);
         effect.Play();
 
@@ -50,18 +52,21 @@ public class HitObstacle : MonoBehaviour
 
         rb.velocity = Vector2.zero;
         
-        RigidbodyConstraints2D originalConstraints = rb.constraints;
+        
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
         yield return new WaitForSeconds(respawnDelay);
+        rb.constraints = rbConstraints;
+        print(rbConstraints);
 
         // Respawn position
+        player.GetComponent<BoxCollider2D>().enabled = true;
         respawnSfx.Play();
         respawnEffect.Play();
         Vector3 spawnPos = respawnPoint != null ? respawnPoint.position : startPosition;
         player.transform.position = spawnPos;
 
-        rb.constraints = originalConstraints;
+        
 
         foreach (SpriteRenderer sprite in allPlayerRenderers)
         {
