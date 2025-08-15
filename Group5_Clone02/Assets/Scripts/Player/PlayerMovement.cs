@@ -65,11 +65,6 @@ public class PlayerMovement : MonoBehaviour
         {
             cayoteTimeCount -= Time.deltaTime;
         }
-
-        if (!IsGrounded())
-        {
-            print("cayote time started");
-        }
         
 
         Flip();
@@ -95,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        print(IsGrounded());
+        //print(IsGrounded());
 
     }
 

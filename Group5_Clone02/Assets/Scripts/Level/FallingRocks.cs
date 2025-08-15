@@ -6,9 +6,9 @@ public class FallingRocks : MonoBehaviour
     [SerializeField] private GameObject[] rockPrefabs;
     [SerializeField] private float rockFallSpeed = 5f;
     [Header("Spawn Area")]
-    [SerializeField] private float minX;     // left boundary
-    [SerializeField] private float maxX;     // right boundary
-    [SerializeField] private float spawnY;   // height at which they spawn
+    [SerializeField] private float minX;  // left boundary
+    [SerializeField] private float maxX;   // right boundary
+    [SerializeField] private float spawnY;   // height at which rocks will start spawning
 
     [Header("Rain Settings")]
     [SerializeField] private float spawnRate = 0.1f; // how fast to spawn rocks (lower = more rain)

@@ -1363,7 +1363,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawn 1
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2721,6 +2721,8 @@ MonoBehaviour:
   timeToDeactivate: 2
   isTemporaryObstacle: 1
   pressedButtonState: {x: 17.53, y: 5.108}
+  timeActivateObstacle: 2
+  isDoorDeactivator: 0
   buttonPushSFX: {fileID: 1613677123}
 --- !u!61 &1613677120
 BoxCollider2D:
@@ -4181,6 +4183,8 @@ MonoBehaviour:
   timeToDeactivate: 2
   isTemporaryObstacle: 1
   pressedButtonState: {x: -17.53, y: 5.108}
+  timeActivateObstacle: 2
+  isDoorDeactivator: 0
   buttonPushSFX: {fileID: 5969904013940354421}
 --- !u!4 &2465396859368321477
 Transform:

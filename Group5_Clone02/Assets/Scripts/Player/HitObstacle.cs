@@ -29,7 +29,7 @@ public class HitObstacle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D coli)
     {
-        if (coli.gameObject.CompareTag("Spikes") || coli.gameObject.CompareTag("Saw"))
+        if (coli.gameObject.CompareTag("Spikes") || coli.gameObject.CompareTag("Saw") || coli.gameObject.CompareTag("Rock"))
         {
 
             StartCoroutine(HandleDeath());
@@ -57,7 +57,7 @@ public class HitObstacle : MonoBehaviour
 
         yield return new WaitForSeconds(respawnDelay);
         rb.constraints = rbConstraints;
-        print(rbConstraints);
+        //print(rbConstraints);
 
         // Respawn position
         player.GetComponent<BoxCollider2D>().enabled = true;
