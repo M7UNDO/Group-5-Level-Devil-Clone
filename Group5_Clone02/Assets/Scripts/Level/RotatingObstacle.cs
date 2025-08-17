@@ -9,7 +9,7 @@ public class RotatingObstacle : MonoBehaviour
     void Update()
     {
         // Rotate around the Y-axis in local space
-        transform.Rotate(0, 0, rotationSpeed, Space.Self);
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime, Space.Self);
  
 
         // Or, rotate around the X-axis in world space

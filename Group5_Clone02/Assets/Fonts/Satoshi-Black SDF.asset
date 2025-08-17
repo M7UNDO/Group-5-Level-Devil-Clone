@@ -121,9 +121,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Satoshi-Black SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 581760960
   material: {fileID: -1489717231994649758}
-  materialHashCode: 0
+  materialHashCode: 145668064
   m_Version: 1.1.0
   m_SourceFontFileGUID: ebe425c53fb6e5945b92cae370ac4b8c
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: ebe425c53fb6e5945b92cae370ac4b8c, type: 3}
