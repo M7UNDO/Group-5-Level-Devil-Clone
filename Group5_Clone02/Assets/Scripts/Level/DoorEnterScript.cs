@@ -8,11 +8,14 @@ public class DoorEnterScript : MonoBehaviour
     [SerializeField] private float fadeDuration = 2f;
     [SerializeField] private float endLevelDuration = 1.2f;
     private Rigidbody2D rb;
+    public bool isEndGame = false;
     private void OnTriggerEnter2D(Collider2D coli)
     {
         if (coli.CompareTag("Player"))
         {
-            PlayerMovement playerMovement = coli.gameObject.GetComponent<PlayerMovement>();
+            
+
+                PlayerMovement playerMovement = coli.gameObject.GetComponent<PlayerMovement>();
             if(playerMovement.playerID == 1)
             {
                 ScoreManager.Instance.AddBlueWin();
@@ -24,7 +27,7 @@ public class DoorEnterScript : MonoBehaviour
 
             FindObjectOfType<DotUI>().UpdateDots();
 
-
+         
             playerMovement.enabled = false;
             coli.gameObject.transform.position = transform.position;
             coli.gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -32,9 +35,25 @@ public class DoorEnterScript : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            StartCoroutine(PlayerEnterDoor(coli.gameObject));
             
 
+            print(ScoreManager.Instance.blueScore);
+            if (ScoreManager.Instance.blueScore == 5)
+            {
+                isEndGame = true;
+                ScoreManager.Instance.EndGame();
+            }
+            else if (ScoreManager.Instance.redScore == 5)
+            {
+
+                isEndGame = true;
+                ScoreManager.Instance.EndGame();
+            }
+            else
+            {
+                isEndGame = false;
+            }
+            StartCoroutine(PlayerEnterDoor(coli.gameObject));
         }
     }
 
@@ -60,7 +79,16 @@ public class DoorEnterScript : MonoBehaviour
 
         doorAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(endLevelDuration);
-        gameObject.GetComponent<LevelLoader>().LoadNextLevel();
+
+        if (!isEndGame)
+        {
+            gameObject.GetComponent<LevelLoader>().LoadNextLevel();
+        }
+        else
+        {
+            print("Level Completed");
+        }
+        
     }
 }
 

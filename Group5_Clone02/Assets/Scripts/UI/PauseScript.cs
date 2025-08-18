@@ -13,7 +13,7 @@ public class PauseScript : MonoBehaviour
     private Controls playerInput;
     public TextMeshProUGUI restartTxt;
     public HighlightText highlightText;
-
+    private int levelRestart = 1;
     private System.Action<InputAction.CallbackContext> pauseAction;
 
     [Header("Pause UI Elements")]
@@ -38,8 +38,22 @@ public class PauseScript : MonoBehaviour
 
     public void RestartGame()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
+
+    }
+
+    public void CompleteRestartGame()
+    {
+        if (ScoreManager.Instance != null)
+        {
+            // Destroying ScoreManager
+            Destroy(ScoreManager.Instance.gameObject);
+        }
+        SceneManager.LoadScene(levelRestart);
+        Time.timeScale = 1f;
+
     }
 
     public void Pause()
@@ -70,7 +84,12 @@ public class PauseScript : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f;
+        if (ScoreManager.Instance != null)
+        {
+            // Destroying ScoreManager
+            Destroy(ScoreManager.Instance.gameObject);
+        }
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 }
