@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
         jumpSfx = transform.GetChild(1).GetComponent<AudioSource>();
+       
+        
     }
 
     private void OnEnable()
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         move = player.FindAction("Move");
         player.Enable();
     }
+
 
     void Update()
     {
