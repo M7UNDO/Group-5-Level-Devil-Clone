@@ -2169,7 +2169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUpSpeed: 5
   popUpOffset: {x: 0, y: 2.44}
-  holdTime: 1
+  holdTime: 2
   retractSpeed: 5
 --- !u!4 &1102978301
 Transform:
@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUpSpeed: 5
   popUpOffset: {x: 0, y: 2.44}
-  holdTime: 1
+  holdTime: 2
   retractSpeed: 5
 --- !u!4 &1496881133
 Transform:
