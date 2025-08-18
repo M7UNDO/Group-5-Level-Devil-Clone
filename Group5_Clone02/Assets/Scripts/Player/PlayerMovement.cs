@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Player ID")]
+
+    public int playerID;
     [Header("Input Fields")]
     [Space(5)]
     private InputActionAsset inputAsset;
@@ -17,8 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [Space(5)]
 
-    [SerializeField]
-    private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public bool isFacingRight;
     private float horizonal;
 
@@ -36,16 +38,22 @@ public class PlayerMovement : MonoBehaviour
     private Transform groundCheck;
     [SerializeField]
     private LayerMask groundLayer;
- 
-    
 
-    
+    [Header("Player Sfx")]
+    [Space(5)]
+
+    [SerializeField] AudioSource jumpSfx;
+
+
+
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
+        jumpSfx = transform.GetChild(1).GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -80,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (cayoteTimeCount > 0f && canJump)
         {
+            jumpSfx.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             canJump = false;
         }
