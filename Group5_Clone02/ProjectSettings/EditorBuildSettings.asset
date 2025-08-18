@@ -9,9 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 109885c3a79764b4a9863277045b53dc
   - enabled: 1
+    path: Assets/Scenes/ThoriTestScene.unity
+    guid: 2866db25ddc93b1419c10cced900e9b0
+  - enabled: 1
     path: Assets/Scenes/SiyaTestLvl2.unity
     guid: 2ba40e91f90ff13428ea1a7e79c9d24f
   - enabled: 1
     path: Assets/Scenes/SiyaTestLvl3.unity
     guid: 97fd6ba4de6a79e4cb769812d162c040
+  - enabled: 1
+    path: Assets/Scenes/ThoriLvl4.unity
+    guid: 8f6d2c883868778418c2814da4060a34
+  - enabled: 1
+    path: Assets/Scenes/ThoriLvl5.unity
+    guid: ff06e9111f266f54f82c010ffc048365
   m_configObjects: {}
