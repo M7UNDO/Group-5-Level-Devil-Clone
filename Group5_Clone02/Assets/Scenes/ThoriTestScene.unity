@@ -1592,6 +1592,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUpSpeed: 5
   popUpOffset: {x: 0, y: 2.44}
+  holdTime: 1
+  retractSpeed: 5
 --- !u!4 &491806239
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,6 +1623,7 @@ GameObject:
   - component: {fileID: 741164592}
   - component: {fileID: 741164591}
   - component: {fileID: 741164590}
+  - component: {fileID: 741164593}
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
@@ -1635,7 +1638,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741164589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ecfe5ddda1f834c901ce24af3e06ce, type: 3}
   m_Name: 
@@ -1643,7 +1646,7 @@ MonoBehaviour:
   startingPoints:
   - {fileID: 1351005291}
   - {fileID: 756236850}
-  newPrefab: {fileID: 0}
+  newPrefab: {fileID: 6090306112019536768, guid: 4a966ad0937d1ab4f89e4dc00eb5a51b, type: 3}
 --- !u!114 &741164591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,6 +1708,24 @@ Transform:
   - {fileID: 756236850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &741164593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741164589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b21052bc8dde3647af1ba0f8f9a4b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPoint1: {fileID: 1351005291}
+  SpawnPoint2: {fileID: 756236850}
+  Player1: {fileID: 6090306112019536768, guid: b6fbb1a6755ca6047af82aa8898377ae, type: 3}
+  Player2: {fileID: 6090306112019536768, guid: 4a966ad0937d1ab4f89e4dc00eb5a51b, type: 3}
+  player1: {fileID: 6140918609121410114, guid: b6fbb1a6755ca6047af82aa8898377ae, type: 3}
+  player2: {fileID: 6140918609121410114, guid: 4a966ad0937d1ab4f89e4dc00eb5a51b, type: 3}
 --- !u!1 &756236849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUpSpeed: 5
   popUpOffset: {x: 0, y: 2.44}
+  holdTime: 1
+  retractSpeed: 5
 --- !u!4 &1102978301
 Transform:
   m_ObjectHideFlags: 0
@@ -2534,6 +2557,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popUpSpeed: 5
   popUpOffset: {x: 0, y: 2.44}
+  holdTime: 1
+  retractSpeed: 5
 --- !u!4 &1496881133
 Transform:
   m_ObjectHideFlags: 0
