@@ -8,6 +8,7 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     public float TransitionTime;
     public int NextLevelIndex;
+    public AudioSource transitionSfx;
     /*public void LoadLevelByInt(int level)
     {
         SceneManager.LoadScene(level);
@@ -29,7 +30,7 @@ public class LevelLoader : MonoBehaviour
     public IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
-
+        transitionSfx.Play();
         yield return new WaitForSeconds(TransitionTime);
 
         if (levelIndex == 0)
