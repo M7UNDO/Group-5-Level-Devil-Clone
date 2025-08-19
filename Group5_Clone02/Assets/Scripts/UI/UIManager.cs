@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        print(level);
+        
     }
 
     public void QuitGame()
@@ -87,10 +87,12 @@ public class UIManager : MonoBehaviour
         if(loadToggle.isOn)
         {
             level = tutorialLevel;
+            print(level);
         }
         else
         {
             level = level1;
+            print(level);
         }
     }
 
