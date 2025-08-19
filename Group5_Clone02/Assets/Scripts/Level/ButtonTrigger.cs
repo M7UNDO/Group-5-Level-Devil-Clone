@@ -48,6 +48,7 @@ public class ButtonTrigger : MonoBehaviour
                 buttonPushSFX.Play();
                 StartCoroutine(DeactivateObstacle());
             }
+
             else
             {
                 StartCoroutine(ButtonPress());
@@ -57,6 +58,18 @@ public class ButtonTrigger : MonoBehaviour
                 
             
         }
+
+        if (coli.gameObject.CompareTag("Box") && !moving)
+        {
+            if (isDoorDeactivator)
+            {
+                StartCoroutine(ButtonPress());
+                buttonPushSFX.Play();
+                obstacle.SetActive(false);
+            }
+
+
+        }
     }
 
     private void OnCollisionExit2D(Collision2D coli)
@@ -64,6 +77,13 @@ public class ButtonTrigger : MonoBehaviour
         if (coli.gameObject.CompareTag("Player"))
         {
             StartCoroutine(ButtonReturn());
+        }
+
+        if (coli.gameObject.CompareTag("Box"))
+        {
+            obstacle.SetActive(true);
+            //StartCoroutine(ButtonReturn());
+
         }
     }
 
@@ -107,7 +127,7 @@ public class ButtonTrigger : MonoBehaviour
 
     private IEnumerator DeactivateObstacle()
     {
-        obstacle.SetActive(false );
+        obstacle.SetActive(false);
         yield return new WaitForSeconds(timeActivateObstacle);
         obstacle.SetActive(true);
     }

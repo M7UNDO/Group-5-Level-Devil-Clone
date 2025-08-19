@@ -8,6 +8,7 @@ TagManager:
   - Spikes
   - Saw
   - Rock
+  - Box
   layers:
   - Default
   - TransparentFX
