@@ -10080,6 +10080,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   jumpSfx: {fileID: 0}
+  startDelay: 2.5
 --- !u!114 &2298996390283397411
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     private bool toggle;
+    public Toggle loadToggle;
 
     [Header("UI Elements")]
     [Space(5)]
@@ -18,6 +20,17 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI controlsTxt;
     public HighlightText highlightText;
 
+    [Header("Levels")]
+    [Space(5)]
+
+    public int tutorialLevel = 1;
+    public int level1 = 2;
+    public int level = 1;
+
+    private void Update()
+    {
+        print(level);
+    }
 
     public void QuitGame()
     {
@@ -63,9 +76,24 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(first); // Set new selected
     }
 
-    public void LoadLevelNumber(int _index)
+    public void LoadLevelNumber()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(_index);
+        SceneManager.LoadScene(level);
     }
+
+    public void LoadLevelToggle()
+    {
+        if(loadToggle.isOn)
+        {
+            level = tutorialLevel;
+        }
+        else
+        {
+            level = level1;
+        }
+    }
+
+
+
 }

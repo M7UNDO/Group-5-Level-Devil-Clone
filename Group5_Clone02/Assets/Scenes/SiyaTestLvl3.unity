@@ -963,6 +963,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0acdd5bf6633c74c807c995cd6eb06b, type: 3}
+--- !u!114 &604454322 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8095552580090890123, guid: e0acdd5bf6633c74c807c995cd6eb06b, type: 3}
+  m_PrefabInstance: {fileID: 604454321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &609119317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,6 +3504,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1567339221}
+    - target: {fileID: 4312918664389928535, guid: 80b10f7012f3b984eb702c5f4e8f3654, type: 3}
+      propertyPath: countDownTxt
+      value: 
+      objectReference: {fileID: 604454322}
     - target: {fileID: 4342277984523910728, guid: 80b10f7012f3b984eb702c5f4e8f3654, type: 3}
       propertyPath: NextLevelIndex
       value: 4

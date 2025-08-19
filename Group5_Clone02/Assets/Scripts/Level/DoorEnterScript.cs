@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DoorEnterScript : MonoBehaviour
@@ -7,13 +8,15 @@ public class DoorEnterScript : MonoBehaviour
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private float fadeDuration = 2f;
     [SerializeField] private float endLevelDuration = 1.2f;
+    public TextMeshProUGUI countDownTxt;
+    public GameObject controlSchemeCanvas;
+    public bool isTutorialLevel;
     private Rigidbody2D rb;
     public bool isEndGame = false;
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        StartCoroutine(StartGame());
     }
     private void OnTriggerEnter2D(Collider2D coli)
     {
@@ -22,16 +25,20 @@ public class DoorEnterScript : MonoBehaviour
             
 
                 PlayerMovement playerMovement = coli.gameObject.GetComponent<PlayerMovement>();
-            if(playerMovement.playerID == 1)
+            if(!isTutorialLevel && playerMovement.playerID == 1)
             {
                 ScoreManager.Instance.AddBlueWin();
             }
-            else if(playerMovement.playerID == 2)
+            else if(!isTutorialLevel && playerMovement.playerID == 2)
             {
                 ScoreManager.Instance.AddRedWin();
             }
 
-            FindObjectOfType<DotUI>().UpdateDots();
+            if (!isTutorialLevel)
+            {
+                FindObjectOfType<DotUI>().UpdateDots();
+            }
+            
 
          
             playerMovement.enabled = false;
@@ -43,18 +50,21 @@ public class DoorEnterScript : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             
 
-            print(ScoreManager.Instance.blueScore);
-            if (ScoreManager.Instance.blueScore == 5)
+            if(ScoreManager.Instance != null)
             {
-                isEndGame = true;
-                ScoreManager.Instance.EndGame();
-            }
-            else if (ScoreManager.Instance.redScore == 5)
-            {
+                if (ScoreManager.Instance.blueScore == 5)
+                {
+                    isEndGame = true;
+                    ScoreManager.Instance.EndGame();
+                }
+                else if (ScoreManager.Instance.redScore == 5)
+                {
 
-                isEndGame = true;
-                ScoreManager.Instance.EndGame();
+                    isEndGame = true;
+                    ScoreManager.Instance.EndGame();
+                }
             }
+            
             else
             {
                 isEndGame = false;
@@ -93,6 +103,26 @@ public class DoorEnterScript : MonoBehaviour
         else
         {
             print("Level Completed");
+        }
+        
+    }
+
+    public IEnumerator StartGame()
+    {
+        //Time.timeScale = 0f;
+        yield return new WaitForSeconds(0.5f);
+        countDownTxt.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        countDownTxt.text = "2";
+        yield return new WaitForSeconds(0.5f);
+        countDownTxt.text = "1";
+        yield return new WaitForSeconds(0.5f);
+        countDownTxt.text = "Go!";
+        yield return new WaitForSeconds(0.5f);
+        Destroy(countDownTxt.gameObject);
+        if (isTutorialLevel)
+        {
+            Destroy(controlSchemeCanvas);
         }
         
     }

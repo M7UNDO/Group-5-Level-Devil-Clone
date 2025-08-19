@@ -44,7 +44,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] AudioSource jumpSfx;
 
-
+    [Header("Start Delay")]
+    [SerializeField] private float startDelay = 4f; // delay in seconds
+    private float startTimer;
+    private bool canMove = false;
 
 
 
@@ -54,8 +57,9 @@ public class PlayerMovement : MonoBehaviour
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
         jumpSfx = transform.GetChild(1).GetComponent<AudioSource>();
-       
-        
+        startTimer = startDelay;
+
+
     }
 
     private void OnEnable()
@@ -68,6 +72,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        if (!canMove)
+        {
+            startTimer -= Time.deltaTime;
+            if (startTimer <= 0f)
+            {
+                canMove = true;
+            }
+            return;
+        }
+
         if (IsGrounded())
         {
             cayoteTimeCount = cayoteTime;
@@ -84,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canMove) return;
         Vector2 input = move.ReadValue<Vector2>();
         horizonal = input.x;
         rb.velocity = new Vector2(input.x * moveSpeed, rb.velocity.y);
@@ -131,5 +147,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    
 
 }

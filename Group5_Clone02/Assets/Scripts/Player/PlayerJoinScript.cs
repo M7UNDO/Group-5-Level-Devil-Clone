@@ -9,10 +9,6 @@ public class PlayerJoinScript : MonoBehaviour
     public Transform SpawnPoint1, SpawnPoint2;
     public GameObject Player1, Player2;
     public PlayerInput player1, player2;
-    //public bool canSetPlayerJump = false;
-    //public bool canSetPlayerSpeed = false;
-    //public float jumpPower;
-    //public float moveSpeed;
 
     void Awake()
     {
@@ -24,19 +20,7 @@ public class PlayerJoinScript : MonoBehaviour
         player2 = PlayerInput.Instantiate(Player2, controlScheme: "Arrows", pairWithDevice: Keyboard.current);
         player2.transform.position = SpawnPoint2.position;
 
-       /* if (canSetPlayerJump)
-        {
-            
-            player1.gameObject.GetComponent<PlayerMovement>().jumpPower = jumpPower;
-            player2.gameObject.GetComponent<PlayerMovement>().jumpPower = jumpPower;
-        }
-        /*
-        if (canSetPlayerSpeed)
-        {
-            player1.gameObject.GetComponent<PlayerMovement>().moveSpeed = moveSpeed;
-            player2.gameObject.GetComponent<PlayerMovement>().moveSpeed = moveSpeed;
-        }
-        */
+    
     }
 
 }
