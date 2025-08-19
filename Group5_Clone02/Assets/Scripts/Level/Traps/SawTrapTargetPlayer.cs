@@ -5,60 +5,60 @@ using UnityEngine;
 public class SawTrapTargetPlayer : MonoBehaviour
 {
     [Header("Saw Settings")]
-    public float dropSpeed = 10f;          // Speed of saw dropping
-    public float stopAbovePlayer = 0.5f;   // How close above player it should stop
-    public float resetDelay = 2f;          // Time before returning to start
+    public float dropDistance = 5f;   // How far it drops down
+    public float moveSpeed = 10f;     // Speed of movement
+    public float holdTime = 1f;       // How long it stays down
 
     private Vector2 startPos;
-    private Transform targetPlayer;
+    private Vector2 dropPos;
     private bool activated = false;
-    private bool returning = false;
+    private bool goingDown = false;
+    private bool goingUp = false;
 
     private void Start()
     {
         startPos = transform.position;
+        dropPos = startPos + Vector2.down * dropDistance;
     }
 
-    public void ActivateTrap(Transform player) 
+    public void ActivateTrap(Transform collisionTransform)
     {
-        if (!activated && !returning)
+        if (!activated)
         {
-            targetPlayer = player;
             activated = true;
+            goingDown = true;
         }
     }
 
     private void Update()
     {
-        if (activated && targetPlayer != null)
+        if (goingDown)
         {
-            // Drop down towards player
-            Vector2 targetPos = new Vector2(targetPlayer.position.x, targetPlayer.position.y + stopAbovePlayer);
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, dropSpeed * Time.deltaTime);
+            // Move toward drop position
+            transform.position = Vector2.MoveTowards(transform.position, dropPos, moveSpeed * Time.deltaTime);
 
-            // When close enough, stop + schedule reset
-            if (Vector2.Distance(transform.position, targetPos) < 0.1f)
+            if (Vector2.Distance(transform.position, dropPos) < 0.05f)
             {
-                activated = false;
-                Invoke(nameof(ResetTrap), resetDelay);
+                goingDown = false;
+                Invoke(nameof(StartGoingUp), holdTime);
             }
         }
-        else if (returning)
+        else if (goingUp)
         {
-            // Move back to original position
-            transform.position = Vector2.MoveTowards(transform.position, startPos, dropSpeed * Time.deltaTime);
+            // Move back up
+            transform.position = Vector2.MoveTowards(transform.position, startPos, moveSpeed * Time.deltaTime);
 
-            if (Vector2.Distance(transform.position, startPos) < 0.1f)
+            if (Vector2.Distance(transform.position, startPos) < 0.05f)
             {
                 transform.position = startPos;
-                returning = false;
+                goingUp = false;
+                activated = false; // reset so it can trigger again
             }
         }
     }
 
-    private void ResetTrap()
+    private void StartGoingUp()
     {
-        returning = true;
-        targetPlayer = null;
+        goingUp = true;
     }
 }

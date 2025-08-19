@@ -342,8 +342,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 206637987}
-  - component: {fileID: 206637986}
   - component: {fileID: 206637985}
+  - component: {fileID: 206637988}
   m_Layer: 0
   m_Name: TrapTrigger
   m_TagString: Untagged
@@ -396,20 +396,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &206637986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206637984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c80537ef39b4b4fb5c91732d3e7f22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trap: {fileID: 1102978299}
-  playerTag: Player
 --- !u!4 &206637987
 Transform:
   m_ObjectHideFlags: 0
@@ -425,6 +411,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &206637988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206637984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e5031bbcc3aff48a8fa9f3c80c977d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trap: {fileID: 1102978299}
+  playerTag: Player
+  triggerOnce: 0
 --- !u!1 &215372054
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,8 +435,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 215372057}
-  - component: {fileID: 215372056}
   - component: {fileID: 215372055}
+  - component: {fileID: 215372058}
   m_Layer: 0
   m_Name: TrapTrigger (1)
   m_TagString: Untagged
@@ -488,20 +489,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &215372056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215372054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c80537ef39b4b4fb5c91732d3e7f22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trap: {fileID: 1496881131}
-  playerTag: Player
 --- !u!4 &215372057
 Transform:
   m_ObjectHideFlags: 0
@@ -517,6 +504,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &215372058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215372054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e5031bbcc3aff48a8fa9f3c80c977d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trap: {fileID: 1496881131}
+  playerTag: Player
+  triggerOnce: 0
 --- !u!1 &302091693
 GameObject:
   m_ObjectHideFlags: 0
