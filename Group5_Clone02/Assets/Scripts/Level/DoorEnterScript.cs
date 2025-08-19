@@ -9,6 +9,12 @@ public class DoorEnterScript : MonoBehaviour
     [SerializeField] private float endLevelDuration = 1.2f;
     private Rigidbody2D rb;
     public bool isEndGame = false;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     private void OnTriggerEnter2D(Collider2D coli)
     {
         if (coli.CompareTag("Player"))
