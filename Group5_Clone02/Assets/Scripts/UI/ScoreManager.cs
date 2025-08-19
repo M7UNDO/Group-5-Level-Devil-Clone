@@ -8,8 +8,9 @@ public class ScoreManager : MonoBehaviour
 
     public int blueScore = 0;
     public int redScore = 0;
+    public int levelsPlayed = 0;
 
-    
+
 
     private void Awake()
     {
@@ -27,25 +28,30 @@ public class ScoreManager : MonoBehaviour
     public void AddBlueWin()
     {
         blueScore++;
+        levelsPlayed++;
     }
 
     public void AddRedWin()
     {
         redScore++;
+        levelsPlayed++;
     }
 
     public void EndGame()
     {
-        if(blueScore == 5)
+        if(levelsPlayed == 5)
         {
             Time.timeScale = 0f;
-            bluePlayerWins.SetActive(true);
+            if (blueScore > redScore)
+            {
+                bluePlayerWins.SetActive(true);
+            }
+            else if(redScore > blueScore)
+            {
+                redPlayerWins.SetActive(true);
+            }
         }
-        else if(redScore == 5)
-        {
-            Time.timeScale = 0f;
-            redPlayerWins.SetActive(true);
-        }
+    
         
     }
 }

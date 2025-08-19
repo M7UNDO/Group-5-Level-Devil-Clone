@@ -48,23 +48,21 @@ public class DoorEnterScript : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            
 
-            if(ScoreManager.Instance != null)
+
+            if (ScoreManager.Instance != null)
             {
-                if (ScoreManager.Instance.blueScore == 5)
+                if (ScoreManager.Instance.levelsPlayed == 5)
                 {
                     isEndGame = true;
                     ScoreManager.Instance.EndGame();
                 }
-                else if (ScoreManager.Instance.redScore == 5)
+                else
                 {
-
-                    isEndGame = true;
-                    ScoreManager.Instance.EndGame();
+                    isEndGame = false;
                 }
             }
-            
+
             else
             {
                 isEndGame = false;
