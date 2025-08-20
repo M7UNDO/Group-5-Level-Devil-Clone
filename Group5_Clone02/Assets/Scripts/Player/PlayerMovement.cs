@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Player ID")]
-
     public int playerID;
+
     [Header("Input Fields")]
     [Space(5)]
     private InputActionAsset inputAsset;
@@ -16,50 +16,41 @@ public class PlayerMovement : MonoBehaviour
     private InputAction move;
 
     private Rigidbody2D rb;
+    private Animator animator;   
 
     [Header("Movement")]
     [Space(5)]
-
     public float moveSpeed = 5f;
     public bool isFacingRight;
     private float horizonal;
 
-
     [Header("Jump")]
     [Space(5)]
-
     public float jumpPower = 5f;
     private bool canJump;
 
     private float cayoteTimeCount;
-    [SerializeField]
-    private float cayoteTime = 0.2f;
-    [SerializeField]
-    private Transform groundCheck;
-    [SerializeField]
-    private LayerMask groundLayer;
+    [SerializeField] private float cayoteTime = 0.2f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
 
     [Header("Player Sfx")]
     [Space(5)]
-
     [SerializeField] AudioSource jumpSfx;
 
     [Header("Start Delay")]
-    [SerializeField] private float startDelay = 4f; // delay in seconds
+    [SerializeField] private float startDelay = 4f; 
     private float startTimer;
     private bool canMove = false;
-
-
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); 
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
         jumpSfx = transform.GetChild(1).GetComponent<AudioSource>();
         startTimer = startDelay;
-
-
     }
 
     private void OnEnable()
@@ -69,10 +60,8 @@ public class PlayerMovement : MonoBehaviour
         player.Enable();
     }
 
-
     void Update()
     {
-
         if (!canMove)
         {
             startTimer -= Time.deltaTime;
@@ -91,19 +80,18 @@ public class PlayerMovement : MonoBehaviour
         {
             cayoteTimeCount -= Time.deltaTime;
         }
-        
 
         Flip();
-        
+        UpdateAnimations(); 
     }
 
     private void FixedUpdate()
     {
         if (!canMove) return;
+
         Vector2 input = move.ReadValue<Vector2>();
         horizonal = input.x;
         rb.velocity = new Vector2(input.x * moveSpeed, rb.velocity.y);
-
 
         if (cayoteTimeCount > 0f && canJump)
         {
@@ -112,19 +100,15 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
 
-        if(rb.velocity.y  > 0.5f)
+        if (rb.velocity.y > 0.5f)
         {
             cayoteTimeCount = 0f;
         }
-
-
-        //print(IsGrounded());
-
     }
 
     private void Flip()
     {
-        if(isFacingRight && horizonal < 0f || !isFacingRight && horizonal > 0f)
+        if (isFacingRight && horizonal < 0f || !isFacingRight && horizonal > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
@@ -137,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
-    
 
     private void Jump(InputAction.CallbackContext context)
     {
@@ -145,9 +128,16 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
         }
-
     }
 
     
+    private void UpdateAnimations()
+    {
+        bool isRunning = Mathf.Abs(horizonal) > 0.1f;
+        bool isJumping = !IsGrounded();
 
+        animator.SetBool("isRunning", isRunning);
+        animator.SetBool("isJumping", isJumping);
+        animator.SetBool("isIdle", !isRunning && !isJumping);
+    }
 }
